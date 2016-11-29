@@ -1,0 +1,13 @@
+<p>
+  Naam: <%= @ship.name %>
+</p>
+<p>
+  Averij? <%= @ship.damaged %>
+</p>
+<p>
+  Design <%= @ship.design.name %>
+</p>
+<%= link_to 'Edit', edit_ship_path(@ship) %>
+
+<%= link_to 'Terug', ships_path %>
+

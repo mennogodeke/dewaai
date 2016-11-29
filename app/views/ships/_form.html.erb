@@ -1,0 +1,6 @@
+<%= simple_form_for @ship do |f| %>
+    <%= f.input :name %>
+    <%= f.input :damaged %>
+    <%= f.collection_select :design_id, Design.all, :id, :name %>
+    <%= f.submit %>
+<% end %>

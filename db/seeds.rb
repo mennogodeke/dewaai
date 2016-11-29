@@ -13,3 +13,18 @@ admin.password = "password"
 admin.password_confirmation = "password"
 admin.admin_role = "true"
 admin.save!
+
+design = Design.new
+design.name = "16 Kwadraad"
+design.capacity = 10
+design.save!
+
+design2 = Design.new
+design2.name = "Schouw"
+design2.capacity = 8
+design2.save!
+
+design3 = Design.new
+design3.name = "Draak"
+design3.capacity = 12
+design3.save!
