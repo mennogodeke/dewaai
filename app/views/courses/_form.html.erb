@@ -1,0 +1,6 @@
+<%= simple_form_for @course do |f| %>
+    <%= f.collection_select :course_type_id, CourseType.all, :id, :name %>
+    <%= f.input :start_date %>
+    <%= f.input :description %>
+    <%= f.submit %>
+<% end  %>

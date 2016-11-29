@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course_type: one
+  start_date: 2016-11-29
+  description: MyText
+
+two:
+  course_type: two
+  start_date: 2016-11-29
+  description: MyText
