@@ -3,10 +3,15 @@ class CoursesController < ApplicationController
   load_and_authorize_resource
   def index
     @courses = Course.all
+    if user_signed_in?
+      @entry = current_user.entries.build
+    end
+
   end
 
   def show
     @course = Course.find(params[:id])
+    @entry = current_user.entries.build
   end
 
   def new

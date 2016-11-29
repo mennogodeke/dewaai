@@ -12,6 +12,16 @@
         <td><%= course.course_type.name %></td>
         <td><%= course.start_date %></td>
         <td><%= link_to 'Show', course_path(course) %></td>
+        <% if user_signed_in? %>
+          <td>  <%= form_for @entry do |f| %>
+                <%= f.hidden_field :course_id, :value => course.id %>
+                <%= f.hidden_field :user_id, :value => current_user.id %>
+                <%= f.submit 'Inschrijven!' %>
+            <% end %>
+          </td>
+        <% else %>
+          <td><%= link_to 'Inschrijven!', new_user_registration_path, message: 'Log in om je in te schrijven.' %></td>
+        <% end %>
         <% if can? :manage, :all  %>
           <td><%= link_to 'Edit', edit_course_path(course) %></td>
           <td><%= link_to 'Destroy', course_path(course),

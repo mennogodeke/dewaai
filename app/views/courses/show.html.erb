@@ -2,4 +2,12 @@
 Start Datum: <%= @course.start_date %>
 Omschrijving: <%= @course.description %>
 
+<p>
+  <%= form_for @entry do |f| %>
+    <%= f.hidden_field :course_id, :value => @course.id %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.submit 'Inschrijven!' %>
+  <% end %>
+</p>
+
 <%= link_to 'Terug', courses_path %>
