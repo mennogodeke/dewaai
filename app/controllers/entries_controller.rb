@@ -1,6 +1,12 @@
 class EntriesController < ApplicationController
+  load_and_authorize_resource
   def index
-    @entries = Entry.all
+    if can? :manage, Entry
+      @entries = Entry.where(:user_id => current_user.id)
+    end
+    if can? :manage, :all
+      @entries = Entry.all
+    end
   end
 
   def show

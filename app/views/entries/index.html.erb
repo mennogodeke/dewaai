@@ -1,5 +1,7 @@
 <h1>Inschrijvingen</h1>
 
+
+
 <table class="table">
   <tr>
     <th>Cursus</th>
@@ -11,11 +13,15 @@
       <tr>
         <td><%= entry.course.course_type.name %></td>
         <td><%= entry.course.start_date %></td>
-        <td><%= link_to 'Show', entry_path(entry) %></td>
+        <td><%= link_to 'Bekijk Factuur', entry_path(entry) %></td>
+        <% if can? :manage, :all  %>
         <td><%= link_to 'Destroy', entry_path(entry),
                         method: :delete,
                         data: { confirm: 'Are you sure?' } %></td>
-        <td></td>
+        <% end %>
       </tr>
   <% end %>
 </table>
+
+
+<%= link_to 'Inschrijven', new_entry_path %>

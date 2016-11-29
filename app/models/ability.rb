@@ -11,6 +11,11 @@ class Ability
       can :dashboard
     end
     if user.user_role?
+      can :read, :all
+      can :manage, Entry
+    end
+    if user.user_role == nil && user.admin_role == nil
+      can :read, :all
     end
   end
 end

@@ -12,12 +12,15 @@
         <td><%= ship.name %></td>
         <td><%= ship.design.name %></td>
         <td><%= link_to 'Show', ship_path(ship) %></td>
-        <td><%= link_to 'Edit', edit_ship_path(ship) %></td>
-        <td><%= link_to 'Destroy', ship_path(ship),
+        <% if can? :manage, :all  %>
+          <td><%= link_to 'Edit', edit_ship_path(ship) %></td>
+          <td><%= link_to 'Destroy', ship_path(ship),
                         method: :delete,
                         data: { confirm: 'Are you sure?' } %></td>
+        <% end  %>
       </tr>
   <% end %>
 </table>
-
-<%= link_to 'Nieuwe Boot', new_ship_path %>
+<% if can? :manage, :all  %>
+  <%= link_to 'Nieuwe Boot', new_ship_path %>
+<% end  %>

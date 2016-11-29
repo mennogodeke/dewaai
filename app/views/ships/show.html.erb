@@ -7,7 +7,8 @@
 <p>
   Design <%= @ship.design.name %>
 </p>
-<%= link_to 'Edit', edit_ship_path(@ship) %>
-
+<% if can? :manage, :all  %>
+  <%= link_to 'Edit', edit_ship_path(@ship) %>
+<% end  %>
 <%= link_to 'Terug', ships_path %>
 

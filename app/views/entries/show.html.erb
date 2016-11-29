@@ -1,4 +1,16 @@
-test
+<h1>Factuur Cursus Inschrijving</h1>
 
-<%= @entry.course.start_date %>
-<%= @entry.user.email %>
+<h2>Cursist</h2>
+<p>
+  Naam: <%= @entry.user.first_name %> <%= @entry.user.last_name %><br>
+  Email: <%= @entry.user.email %><br>
+  Telefoon: <%= @entry.user.telephone %><br>
+  Postcode: <%= @entry.user.zip_code %><br>
+  Woonplaats <%= @entry.user.city %><br>
+</p>
+
+<h2>Cursus</h2>
+<p>
+  Start Datum:<strong><%= @entry.course.start_date %></strong><br>
+  Prijs: <strong><%= number_to_currency(@entry.course.course_type.price) %></strong>
+</p>
