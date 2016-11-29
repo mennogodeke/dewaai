@@ -1,0 +1,21 @@
+<h1>Inschrijvingen</h1>
+
+<table class="table">
+  <tr>
+    <th>Cursus</th>
+    <th>Begindatum</th>
+    <th colspan="2"></th>
+  </tr>
+
+  <% @entries.each do |entry| %>
+      <tr>
+        <td><%= entry.course.course_type.name %></td>
+        <td><%= entry.course.start_date %></td>
+        <td><%= link_to 'Show', entry_path(entry) %></td>
+        <td><%= link_to 'Destroy', entry_path(entry),
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' } %></td>
+        <td></td>
+      </tr>
+  <% end %>
+</table>

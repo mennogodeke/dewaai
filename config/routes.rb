@@ -7,4 +7,5 @@ Rails.application.routes.draw do
 
   resources :ships
   resources :courses
+  resources :entries
 end
