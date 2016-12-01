@@ -10,4 +10,32 @@ Omschrijving: <%= @course.description %>
   <% end %>
 </p>
 
+<% if can? :manage, :all  %>
+
+    <table class="table">
+      <thead>
+      <tr>
+        <td>Naam</td>
+        <td>Postcode</td>
+        <td>Woonplaats</td>
+        <td>Telefoon</td>
+        <td>Email</td>
+      </tr>
+      </thead>
+      <tbody>
+      <% @entries.each do |entry| %>
+      <tr>
+        <td><%= entry.user.first_name %> <%= entry.user.last_name %></td>
+        <td><%= entry.user.zip_code %></td>
+        <td><%= entry.user.city %></td>
+        <td><%= entry.user.telephone %></td>
+        <td><%= entry.user.email %></td>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+
+<% end %>
+
 <%= link_to 'Terug', courses_path %>

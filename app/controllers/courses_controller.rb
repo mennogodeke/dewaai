@@ -12,6 +12,7 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @entry = current_user.entries.build
+    @entries = Entry.where(:course_id => @course.id)
   end
 
   def new

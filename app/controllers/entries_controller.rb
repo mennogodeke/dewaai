@@ -44,6 +44,10 @@ class EntriesController < ApplicationController
     redirect_to entries_path
   end
 
+  def overview
+
+  end
+
   private
   def entry_params
     params.require(:entry).permit(:course_id, :user_id)

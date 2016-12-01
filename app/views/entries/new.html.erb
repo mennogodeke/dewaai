@@ -1,6 +1,0 @@
-<h1>Schrijf je in!</h1>
-
-<%= simple_form_for @entry do |f| %>
-  <%= f.collection_select :course_id, Course.all, :id, :start_date %>
-<%= f.submit %>
-<% end %>
