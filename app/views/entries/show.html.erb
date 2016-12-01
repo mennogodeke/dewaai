@@ -14,3 +14,6 @@
   Start Datum:<strong><%= @entry.course.start_date %></strong><br>
   Prijs: <strong><%= number_to_currency(@entry.course.course_type.price) %></strong>
 </p>
+
+
+<%= link_to "Bekijk factuur als PDF",entry_path(@entry, :format => 'pdf') %>

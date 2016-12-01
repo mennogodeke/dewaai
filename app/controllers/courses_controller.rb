@@ -23,6 +23,9 @@ class CoursesController < ApplicationController
       @total2 = @c2entries * 700
       @total3 = @c3entries * 800
       @total = @total1 + @total2 + @total3
+
+      @first_date = @courses.order('start_date asc').first
+      @last_date = @courses.order('start_date asc').last
     end
 
 

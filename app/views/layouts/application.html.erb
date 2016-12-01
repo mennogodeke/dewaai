@@ -27,7 +27,6 @@
         <li><%= link_to 'Contact', pages_contact_path %></li>
         <% if can? :manage, :all  %>
           <li><%= link_to 'Dashboard', rails_admin_path %></li>
-          <li><%= link_to 'Overzichten', entries_overview_path %></li>
         <% end  %>
       </ul>
       <ul class="nav navbar-nav navbar-right">

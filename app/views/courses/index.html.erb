@@ -12,8 +12,8 @@
       <tr>
         <td><%= course.course_type.name %></td>
         <td><%= course.start_date %></td>
-        <td><%= course.entries.count  %> / <%= course.course_type.design.capacity * course.course_type.ship_amount %></td>
-        <td><%= link_to 'Show', course_path(course) %></td>
+        <% if course.entries.count <= course.course_type.design.capacity * course.course_type.ship_amount %>
+        <td><%= course.course_type.design.capacity * course.course_type.ship_amount - course.entries.count  %></td>
         <% if user_signed_in? %>
           <td>  <%= form_for @entry do |f| %>
                 <%= f.hidden_field :course_id, :value => course.id %>
@@ -21,9 +21,15 @@
                 <%= f.submit 'Inschrijven!' %>
             <% end %>
           </td>
+          <td><%= link_to 'Show', course_path(course) %></td>
         <% else %>
           <td><%= link_to 'Inschrijven!', new_user_registration_path, message: 'Log in om je in te schrijven.' %></td>
         <% end %>
+        <% else %>
+            <td><strong>Vol!</strong></td>
+            <td></td>
+        <% end %>
+
         <% if can? :manage, :all  %>
           <td><%= link_to 'Edit', edit_course_path(course) %></td>
           <td><%= link_to 'Destroy', course_path(course),
@@ -51,7 +57,7 @@
       <tr>
         <td><%= c.course_type.name %></td>
         <td><%= c.start_date %></td>
-        <td><%= c.start_date %></td>
+        <td><%= c.start_date + 7 %></td>
         <td><%= number_to_currency(c.course_type.price, unit: "€") %></td>
         <td><%= c.entries.count %></td>
         <td><%= number_to_currency(c.course_type.price * c.entries.count, unit: "€") %></td>
@@ -64,6 +70,7 @@
       </tr>
     </tbody>
   </table>
+    <%= link_to "Bekijk als PDF", courses_path(:format => 'pdf') %>
 
   <%= link_to 'Nieuwe Cursus', new_course_path %>
 <% end %>

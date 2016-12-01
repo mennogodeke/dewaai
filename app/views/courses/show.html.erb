@@ -4,18 +4,24 @@ Start Datum: <strong><%= @course.start_date %></strong><br>
   <%= @course.description %>
 </p>
 
+Prijs <strong><%= number_to_currency(@course.course_type.price, unit: "€") %></strong>
+<p>
+
+<% if @freespots <= @course.course_type.ship_amount %>
+    <p>
+      <strong>Deze cursus zit helaas al vol</strong>
+    </p>
+<% else %>
 <p>
   Inschrijvingen: <strong>Er zijn nog <%= @freespots %> plekken vrij</strong>
 </p>
-
-Prijs <strong><%= number_to_currency(@course.course_type.price, unit: "€") %></strong>
-<p>
   <%= form_for @entry do |f| %>
     <%= f.hidden_field :course_id, :value => @course.id %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
     <%= f.submit 'Inschrijven!' %>
   <% end %>
 </p>
+<% end %>
 
 <% if can? :manage, :all  %>
 <h1>Inschrijvingen</h1>
@@ -42,7 +48,7 @@ Prijs <strong><%= number_to_currency(@course.course_type.price, unit: "€") %><
       <% end %>
       </tbody>
     </table>
-
+    <%= link_to "Bekijk als PDF", course_path(@course, :format => 'pdf') %>
 
 <% end %>
 
