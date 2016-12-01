@@ -28,9 +28,6 @@ class CoursesController < ApplicationController
       @last_date = @courses.order('start_date asc').last
     end
 
-
-
-
   end
 
   def show
