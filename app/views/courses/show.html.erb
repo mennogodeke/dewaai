@@ -1,7 +1,14 @@
 <h1><%= @course.course_type.name %></h1>
-Start Datum: <%= @course.start_date %>
-Omschrijving: <%= @course.description %>
+Start Datum: <strong><%= @course.start_date %></strong><br>
+<p>
+  <%= @course.description %>
+</p>
 
+<p>
+  Inschrijvingen: <strong>Er zijn nog <%= @freespots %> plekken vrij</strong>
+</p>
+
+Prijs <strong><%= number_to_currency(@course.course_type.price, unit: "€") %></strong>
 <p>
   <%= form_for @entry do |f| %>
     <%= f.hidden_field :course_id, :value => @course.id %>
@@ -11,7 +18,8 @@ Omschrijving: <%= @course.description %>
 </p>
 
 <% if can? :manage, :all  %>
-
+<h1>Inschrijvingen</h1>
+    <strong>Overzicht <%= @course.course_type.name %> Cursus <%= @course.start_date %></strong>
     <table class="table">
       <thead>
       <tr>

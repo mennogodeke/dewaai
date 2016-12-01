@@ -4,6 +4,7 @@
   <tr>
     <th>Cursus Type</th>
     <th>Begin Datum</th>
+    <th>Vrije Plekken</th>
     <th colspan="3"></th>
   </tr>
 
@@ -11,6 +12,7 @@
       <tr>
         <td><%= course.course_type.name %></td>
         <td><%= course.start_date %></td>
+        <td><%= course.entries.count  %> / <%= course.course_type.design.capacity * course.course_type.ship_amount %></td>
         <td><%= link_to 'Show', course_path(course) %></td>
         <% if user_signed_in? %>
           <td>  <%= form_for @entry do |f| %>
@@ -32,5 +34,36 @@
   <% end %>
 </table>
 <% if can? :manage, :all  %>
+    <h1>Opbrengsten</h1>
+  <table class="table">
+    <thead>
+    <tr>
+      <td>Cursus</td>
+      <td>Begindatum</td>
+      <td>Einddatum</td>
+      <td>Prijs</td>
+      <td>Aantal Cursisten</td>
+      <td>Opbrengsten</td>
+    </tr>
+    </thead>
+    <tbody>
+    <% @courses.each do |c| %>
+      <tr>
+        <td><%= c.course_type.name %></td>
+        <td><%= c.start_date %></td>
+        <td><%= c.start_date %></td>
+        <td><%= number_to_currency(c.course_type.price, unit: "€") %></td>
+        <td><%= c.entries.count %></td>
+        <td><%= number_to_currency(c.course_type.price * c.entries.count, unit: "€") %></td>
+      </tr>
+    <% end %>
+      <tr>
+        <td colspan="4"></td>
+        <td>Totaal:</td>
+        <td><%= number_to_currency(@total, unit: "€") %></td>
+      </tr>
+    </tbody>
+  </table>
+
   <%= link_to 'Nieuwe Cursus', new_course_path %>
 <% end %>
