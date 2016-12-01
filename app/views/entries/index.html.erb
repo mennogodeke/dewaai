@@ -6,7 +6,7 @@
   <tr>
     <th>Cursus</th>
     <th>Begindatum</th>
-    <th colspan="2"></th>
+    <th colspan="3"></th>
   </tr>
 
   <% @entries.each do |entry| %>
@@ -15,6 +15,7 @@
         <td><%= entry.course.start_date %></td>
         <td><%= link_to 'Bekijk Factuur', entry_path(entry) %></td>
         <% if can? :manage, :all  %>
+        <td><%= entry.user.email %></td>
         <td><%= link_to 'Destroy', entry_path(entry),
                         method: :delete,
                         data: { confirm: 'Are you sure?' } %></td>
