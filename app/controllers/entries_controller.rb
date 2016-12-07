@@ -18,12 +18,19 @@ class EntriesController < ApplicationController
   end
 
   def create
+    if can? :manage, Entry
+      @entries = Entry.where(:user_id => current_user.id)
+    end
+    if can? :manage, :all
+      @entries = Entry.all
+    end
     @entry = current_user.entries.build(entry_params)
 
     if @entry.save
       redirect_to @entry
     else
-      render 'new'
+      flash[:notice] = "Je hebt je al ingeschreven voor deze cursus"
+      render 'index'
     end
   end
 

@@ -3,31 +3,48 @@ class CoursesController < ApplicationController
   load_and_authorize_resource
   def index
     @courses = Course.all
-    @c1 = @courses.where(:course_type_id => 1)
-    @c2 = @courses.where(:course_type_id => 2)
-    @c3 = @courses.where(:course_type_id => 3)
     if user_signed_in?
       @entry = current_user.entries.build
     end
     if can? :manage, :all
-      @c1.each do |c|
-        @c1entries = c.entries.count
-      end
-      @c2.each do |c|
-        @c2entries = c.entries.count
-      end
-      @c3.each do |c|
-        @c3entries = c.entries.count
-      end
-      @total1 = @c1entries * 500
-      @total2 = @c2entries * 700
-      @total3 = @c3entries * 800
-      @total = @total1 + @total2 + @total3
+      @c1 = @courses.where(:course_type_id => 1)
+      @c2 = @courses.where(:course_type_id => 2)
+      @c3 = @courses.where(:course_type_id => 3)
 
+      @total1 = 0
+      @total2 = 0
+      @total3 = 0
+
+      @c1entries = 0
+      @c2entries = 0
+      @c3entries = 0
+
+      @c1.each do |c|
+        @c1entries += c.entries.count
+      end
+
+      @c2.each do |c|
+        @c2entries += c.entries.count
+      end
+
+      @c3.each do |c|
+        @c3entries += c.entries.count
+      end
+
+      if @c1entries > 0
+        @total1 = @c1entries * 500
+      end
+      if @c2entries > 0
+      @total2 = @c2entries * 700
+      end
+      if @c3entries > 0
+      @total3 = @c3entries * 800
+      end
+
+      @total = @total1 + @total2 + @total3
+      end
       @first_date = @courses.order('start_date asc').first
       @last_date = @courses.order('start_date asc').last
-    end
-
   end
 
   def show

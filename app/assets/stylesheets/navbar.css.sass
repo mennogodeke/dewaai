@@ -1,0 +1,28 @@
+@import "color"
+
+
+$small: 768px
+
+.navbar-self
+  background-color: $dark_blue
+  font-family: Rockwell
+  border-radius: 0px !important
+  .devider
+    a
+      cursor: default
+      &:hover
+        background-color: transparent
+        color: white
+
+  .navbar-toggle
+    background-color: white
+    .icon-bar
+      background-color: $dark_blue
+
+  a
+    color: $white
+    font-size: 22px
+
+@media screen and (max-width: $small)
+  .devider
+    display: none !important

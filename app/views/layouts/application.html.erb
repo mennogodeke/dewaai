@@ -8,7 +8,6 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="container">
   <% unless flash.empty? %>
       <script type="text/javascript">
         <% flash.each do |f| %>
@@ -17,37 +16,67 @@
         <% end %>
       </script>
   <% end %>
-  <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <ul class="nav navbar-nav">
-        <li><%= link_to 'Home', root_path %></li>
-        <li><%= link_to 'Cursussen', courses_path %></li>
-        <li><%= link_to 'Inschrijvingen', entries_path %></li>
-        <li><%= link_to 'Boten', ships_path %></li>
-        <li><%= link_to 'Contact', pages_contact_path %></li>
-        <% if can? :manage, :all  %>
-          <li><%= link_to 'Dashboard', rails_admin_path %></li>
-        <% end  %>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? %>
-            <%= link_to('Edit registration', edit_user_registration_path) %>
-            <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-        <% else %>
 
-        <li><span class="glyphicon glyphicon-user"></span><%= link_to('Register', new_user_registration_path)  %></li>
-        <li><span class="glyphicon glyphicon-log-in"></span><%= link_to('Login', new_user_session_path)  %></li>
-        <% end %>
-      </ul>
+  <body>
+    <div class="container-full">
+      <header>
+        <%= image_tag("header.jpg", :class => "img-responsive", :width => "100%") %>
+      </header>
     </div>
-  </nav>
+    <nav class="navbar navbar-self">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
 
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><%= link_to 'Home', root_path %></li>
+            <li class="devider"><a>/</a></li>
+            <li><%= link_to 'Cursussen', courses_path %></li>
+            <li class="devider"><a>/</a></li>
+            <li><%= link_to 'Inschrijvingen', entries_path %></li>
+            <li class="devider"><a>/</a></li>
+            <li><%= link_to 'Contact', pages_contact_path%></li>
+            <% if can? :manage, :all  %>
+                <li class="devider"><a>/</a></li>
+                <li><%= link_to 'Dashboard', rails_admin_path %></li>
+            <% end  %>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <% if user_signed_in? %>
+                    <%= link_to('Edit registration', edit_user_registration_path) %>
+                    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+                <% else %>
 
+                    <li><%= link_to('Register', new_user_registration_path)%></li>
+                    <li><%= link_to('Login', new_user_session_path)  %></li>
+                <% end %>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  <div class="container">
+    <%= yield %>
+  </div>
 
+  <footer class="container-full">
+    <ul>
+      <li>FastDevelopment</li>  <li>/</li>  <li>www.fastdev.com</li>  <li>/</li>  <li>info@fastdev.com</li>  <li>/</li>  <li>0523-232244</li>  <li>/</li>  <li>Parkweg 1-1 Hardenberg</li>
+    </ul>
+  </footer>
 
-
-
-
-  <%= yield %>
   </body>
 </html>
