@@ -8,16 +8,17 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <% unless flash.empty? %>
-      <script type="text/javascript">
-        <% flash.each do |f| %>
-        <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info') %>
-        toastr['<%= type %>']('<%= f[1] %>');
-        <% end %>
-      </script>
-  <% end %>
+
 
   <body>
+    <% unless flash.empty? %>
+        <script type="text/javascript">
+          <% flash.each do |f| %>
+          <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info') %>
+          toastr['<%= type %>']('<%= f[1] %>');
+          <% end %>
+        </script>
+    <% end %>
     <div class="container-full">
       <header>
         <%= image_tag("header.jpg", :class => "img-responsive", :width => "100%") %>
@@ -44,6 +45,8 @@
             <li class="devider"><a>/</a></li>
             <li><%= link_to 'Inschrijvingen', entries_path %></li>
             <li class="devider"><a>/</a></li>
+            <li><%= link_to 'Schepen', ships_path %></li>
+            <li class="devider"><a>/</a></li>
             <li><%= link_to 'Contact', pages_contact_path%></li>
             <% if can? :manage, :all  %>
                 <li class="devider"><a>/</a></li>
@@ -55,8 +58,8 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <% if user_signed_in? %>
-                    <%= link_to('Edit registration', edit_user_registration_path) %>
-                    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+                    <li><%= link_to('Profiel', edit_user_registration_path) %></li>
+                    <li><%= link_to('Loguit', destroy_user_session_path, :method => :delete) %></li>
                 <% else %>
 
                     <li><%= link_to('Register', new_user_registration_path)%></li>

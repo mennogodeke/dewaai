@@ -11,16 +11,16 @@
       <tr>
         <td><%= ship.name %></td>
         <td><%= ship.design.name %></td>
-        <td><%= link_to 'Show', ship_path(ship) %></td>
+        <td><%= link_to 'Bekijk', ship_path(ship), class: 'btn btn-default' %></td>
         <% if can? :manage, :all  %>
-          <td><%= link_to 'Edit', edit_ship_path(ship) %></td>
+          <td><%= link_to 'Edit', edit_ship_path(ship), class: 'btn btn-warning' %></td>
           <td><%= link_to 'Destroy', ship_path(ship),
                         method: :delete,
-                        data: { confirm: 'Are you sure?' } %></td>
-        <% end  %>
+                        data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+            <% end %>
+        <% end %>
       </tr>
-  <% end %>
 </table>
 <% if can? :manage, :all  %>
-  <%= link_to 'Nieuwe Boot', new_ship_path %>
+  <%= link_to 'Nieuwe Boot', new_ship_path, class: 'btn btn-success' %>
 <% end  %>

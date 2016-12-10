@@ -1,4 +1,16 @@
 <%= simple_form_for @ship do |f| %>
+    <% if @ship.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@ship.errors.count, "error") %> Zorgt ervoor dat dat dit schip niet kan worden opgeslagen:
+          </h2>
+          <ul>
+            <% @ship.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
     <%= f.input :name %>
     <%= f.input :damaged %>
     <%= f.collection_select :design_id, Design.all, :id, :name %>

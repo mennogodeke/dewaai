@@ -16,8 +16,11 @@ class ShipsController < ApplicationController
   def create
     @ship = Ship.new(ship_params)
 
-    @ship.save
+    if @ship.save
     redirect_to @ship
+    else
+      render 'new'
+    end
   end
 
   def edit

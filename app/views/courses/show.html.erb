@@ -1,5 +1,7 @@
 <h1><%= @course.course_type.name %></h1>
+<p>
 Start Datum: <strong><%= @course.start_date %></strong><br>
+</p>
 <p>
   <%= @course.description %>
 </p>
@@ -18,7 +20,7 @@ Prijs <strong><%= number_to_currency(@course.course_type.price, unit: "€") %><
   <%= form_for @entry do |f| %>
     <%= f.hidden_field :course_id, :value => @course.id %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.submit 'Inschrijven!' %>
+    <%= f.submit 'Inschrijven!', class: 'btn btn-success' %>
   <% end %>
 </p>
 <% end %>
@@ -48,8 +50,8 @@ Prijs <strong><%= number_to_currency(@course.course_type.price, unit: "€") %><
       <% end %>
       </tbody>
     </table>
-    <%= link_to "Bekijk als PDF", course_path(@course, :format => 'pdf') %>
+    <%= link_to "Bekijk als PDF", course_path(@course, :format => 'pdf'), class: 'btn btn-info' %>
 
 <% end %>
 
-<%= link_to 'Terug', courses_path %>
+<%= link_to 'Terug', courses_path, class: 'btn btn-default' %>

@@ -1,7 +1,19 @@
 <%= simple_form_for @course do |f| %>
+    <% if @course.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@course.errors.count, "error") %> Zorgt ervoor dat dat de cursus niet kan worden opgeslagen:
+          </h2>
+          <ul>
+            <% @course.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
     <%= f.collection_select :course_type_id, CourseType.all, :id, :name %>
     <%= f.input :start_date, :start_year => Date.today.year  %>
     <%= f.input :description %>
-    <%= f.submit %>
+    <%= f.submit "Submit" %>
 <% end  %>
 

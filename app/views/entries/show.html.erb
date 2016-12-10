@@ -16,4 +16,5 @@
 </p>
 
 
-<%= link_to "Bekijk factuur als PDF",entry_path(@entry, :format => 'pdf') %>
+<%= link_to "Bekijk factuur als PDF",entry_path(@entry, :format => 'pdf'), class: 'btn btn-info' %>
+<%= link_to 'Terug', entries_path, class: 'btn btn-default' %>

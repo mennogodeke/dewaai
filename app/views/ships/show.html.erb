@@ -2,13 +2,20 @@
   Naam: <%= @ship.name %>
 </p>
 <p>
-  Averij? <%= @ship.damaged %>
+  Averij? <% if @ship.damaged? %>
+  Ja
+      <% else %>
+  nee
+  <% end %>
 </p>
 <p>
   Design <%= @ship.design.name %>
 </p>
+<p>
+  Capaciteit <%= @ship.design.capacity %>
+</p>
 <% if can? :manage, :all  %>
-  <%= link_to 'Edit', edit_ship_path(@ship) %>
+  <%= link_to 'Edit', edit_ship_path(@ship), class: 'btn btn-warning' %>
 <% end  %>
-<%= link_to 'Terug', ships_path %>
+<%= link_to 'Terug', ships_path, class: 'btn btn-default' %>
 

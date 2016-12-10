@@ -13,12 +13,12 @@
       <tr>
         <td><%= entry.course.course_type.name %></td>
         <td><%= entry.course.start_date %></td>
-        <td><%= link_to 'Bekijk Inschrijving', entry_path(entry) %></td>
+        <td><%= link_to 'Bekijk Inschrijving', entry_path(entry), class: 'btn btn-default' %></td>
         <% if can? :manage, :all  %>
         <td><%= entry.user.email %></td>
         <td><%= link_to 'Destroy', entry_path(entry),
                         method: :delete,
-                        data: { confirm: 'Are you sure?' } %></td>
+                        data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
         <% end %>
       </tr>
   <% end %>

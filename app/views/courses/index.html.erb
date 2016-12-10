@@ -18,12 +18,12 @@
           <td>  <%= form_for @entry do |f| %>
                 <%= f.hidden_field :course_id, :value => course.id %>
                 <%= f.hidden_field :user_id, :value => current_user.id %>
-                <%= f.submit 'Inschrijven!' %>
+                <%= f.submit 'Inschrijven!', class: 'btn btn-success' %>
             <% end %>
           </td>
-          <td><%= link_to 'Show', course_path(course) %></td>
+          <td><%= link_to 'Bekijken', course_path(course), class: 'btn btn-default' %></td>
         <% else %>
-          <td><%= link_to 'Inschrijven!', new_user_registration_path, message: 'Log in om je in te schrijven.' %></td>
+          <td><%= link_to 'Inschrijven!', new_user_registration_path, message: 'Log in om je in te schrijven.', class: 'btn btn-success' %></td>
         <% end %>
         <% else %>
             <td><strong>Vol!</strong></td>
@@ -31,10 +31,10 @@
         <% end %>
 
         <% if can? :manage, :all  %>
-          <td><%= link_to 'Edit', edit_course_path(course) %></td>
-          <td><%= link_to 'Destroy', course_path(course),
+          <td><%= link_to 'Bewerken', edit_course_path(course), class: 'btn btn-warning' %></td>
+          <td><%= link_to 'Verwijderen', course_path(course),
                           method: :delete,
-                          data: { confirm: 'Are you sure?' } %></td>
+                          data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
         <% end  %>
       </tr>
   <% end %>
@@ -70,7 +70,7 @@
       </tr>
     </tbody>
   </table>
-    <%= link_to "Bekijk als PDF", courses_path(:format => 'pdf') %>
+    <%= link_to "Bekijk als PDF", courses_path(:format => 'pdf'), :class => 'btn btn-info' %>
 
-  <%= link_to 'Nieuwe Cursus', new_course_path %>
+  <%= link_to 'Nieuwe Cursus', new_course_path, :class => 'btn btn-success' %>
 <% end %>
